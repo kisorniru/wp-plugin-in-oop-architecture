@@ -49,6 +49,28 @@ define('FS_METHOD', 'direct');
 * This is open project, so, please improve it
 * Happy Coding!
 
+### How to read
+
+* Class name is written in a way so that you can easily understand which one is first and which one is after that i.e first class - ClassA, then second class - ClassB, and so on
+* wordpress recommended folder structure (https://developer.wordpress.org/plugins/plugin-basics/best-practices/#folder-structure)
+sh```
+	/plugin-name
+    	plugin-name.php
+     	uninstall.php
+     	/languages
+     	/includes
+     	/admin
+          	/js
+          	/css
+          	/images
+     	/public
+          	/js
+          	/css
+          	/images
+```
+* `plugin-name.php` is the header declaration file. You can call it by any name, my case `plugin-index.php`
+
+
 ### Owned By
 * [Siddique Md. Noor-A-Alam](https://www.nasiddique.com)
 
