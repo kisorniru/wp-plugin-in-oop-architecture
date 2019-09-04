@@ -4,7 +4,7 @@
   </a>
 </p>
 
-This plugin is basically doing nothing. I personally develop this for create a plugin skeleton based on # OOP architecture #. This is a learing project, please put constructive comments to help me.
+This plugin is basically doing nothing. I personally develop this for create a plugin skeleton based on **_OOP Architecture_**. This is a learing project, please put constructive comments to help me.
 
 ### Tech
 
