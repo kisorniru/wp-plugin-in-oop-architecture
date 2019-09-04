@@ -24,11 +24,11 @@ if ( !class_exists( 'ClassA' ) ) {
       // Property Visibility (public / private / protected)
       // https://www.php.net/manual/en/language.oop5.visibility.php
 
-      public $public = '*** This is a public property. Class members declared public can be accessed everywhere.';
+      public $public = '*** This is a public property from class A. Class members declared public can be accessed everywhere.';
       // Class members declared public can be accessed everywhere.
-      protected $protected = '*** This is a protected property. Class members declared protected can be accessed only within the class itself and by inheriting and parent classes.';
+      protected $protected = '*** This is a protected property from class A. Class members declared protected can be accessed only within the class itself and by inheriting and parent classes.';
       // Class members declared protected can be accessed only within the class itself and by inheriting and parent classes.
-      private $private = '*** This is a private property. Class members declared as private may only be accessed by the class that defines the member.';
+      private $private = '*** This is a private property from class A. Class members declared as private may only be accessed by the class that defines the member.';
       // Class members declared as private may only be accessed by the class that defines the member.
 
     	// Put all your add_action, add_shortcode, add_filter functions in __construct()
@@ -48,6 +48,13 @@ if ( !class_exists( 'ClassA' ) ) {
 
           // Add Title in back-end footer display
           add_action('wp_footer', array($this,'na_property_visibility'));
+
+          // Load translation files
+          add_action( 'plugins_loaded', array( $this, 'include_classes' ) );
+      }
+
+      public static function include_classes(){
+        require_once( 'includes/class-b.php' );
       }
 
       /* ENQUEUE SCRIPTS AND STYLES */
@@ -75,7 +82,7 @@ if ( !class_exists( 'ClassA' ) ) {
 
 // TODO: Replace these with a variable named appropriately and the class name above
 // If you need this available beyond our initial creation, you can create it as a global
-global $classA;
+global $objectA;
 
-// Create an instance of our class to kick off the whole thing
-$classA = new ClassA();
+// Create an instance / object of our class to kick off the whole thing
+$objectA = new ClassA();
