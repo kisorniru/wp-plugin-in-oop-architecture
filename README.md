@@ -53,7 +53,7 @@ define('FS_METHOD', 'direct');
 
 * Class name is written in a way so that you can easily understand which one is first and which one is after that i.e first class - ClassA, then second class - ClassB, and so on
 * wordpress recommended folder structure (https://developer.wordpress.org/plugins/plugin-basics/best-practices/#folder-structure)
-sh```
+```sh
 	/plugin-name
     	plugin-name.php
      	uninstall.php
