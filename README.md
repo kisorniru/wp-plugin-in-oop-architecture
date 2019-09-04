@@ -68,7 +68,9 @@ define('FS_METHOD', 'direct');
     /css
     /images
 ```
-* `plugin-name.php` is the header declaration file. You can call it by any name, my case `plugin-index.php`
+* `plugin-name` is the plugin folder. You can call it by any name, my case `wp-plugin-in-oop-architecture`.
+* `plugin-name.php` is the header declaration file. You can call it by any name, my case `wp-plugin-in-oop-architecture.php`.
+* **Here**, you can not change `uninstall.php` this file name. This file name is for uninstall your plugin from wordpress project and name of it should be as it is.
 
 
 ### Owned By
