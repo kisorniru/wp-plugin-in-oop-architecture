@@ -4,8 +4,6 @@
   </a>
 </p>
 
-# README #
-
 This plugin is basically doing nothing. I personally develop this for create a plugin skeleton based on # OOP architecture #. This is a learing project, please put constructive comments to help me.
 
 ### Tech
@@ -42,7 +40,7 @@ $ git clone https://github.com/kisorniru/wp-plugin-in-oop-architecture.git
 define('FS_METHOD', 'direct');
 ```
 
-# After Installation
+### After Installation
 
 * Have fun with it
 * Check every corner of the plugin
@@ -51,8 +49,8 @@ define('FS_METHOD', 'direct');
 * This is open project, so, please improve it
 * Happy Coding!
 
-# Owned By
+### Owned By
 * [Siddique Md. Noor-A-Alam](https://www.nasiddique.com)
 
-# Developed By
+### Developed By
 * [Siddique Md. Noor-A-Alam](https://www.nasiddique.com)
