@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://nasiddique.com">
-  	<img src="creating-a-wp-plugin.jpg">
+  	<img src="wp-plugin-in-oop-architecture.jpg">
   </a>
 </p>
 
