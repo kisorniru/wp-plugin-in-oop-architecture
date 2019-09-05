@@ -21,6 +21,16 @@ if ( !class_exists( 'ClassA' ) ) {
   
   class ClassA {
 
+      const VERSION = '1.0.4';
+      const PREFIX  = 'OOP_Architecture';
+      const REQUIRED_WC = '3.0.0.0';
+
+      /**
+       * @var OOP_Architecture - the single instance of the class
+       * @since 1.0.0
+       */
+      protected static $instance = null;
+
       // Property Visibility (public / private / protected)
       // https://www.php.net/manual/en/language.oop5.visibility.php
 
@@ -35,6 +45,34 @@ if ( !class_exists( 'ClassA' ) ) {
     	// For the callback name, use this: array($this,'<function name>')
     	// <function name> is the name of the function within this class, so need not be globally unique
     	// Some sample commonly used functions are included below
+
+      /**
+       * Main OOP_Architecture Instance
+       *
+       * Ensures only one instance of OOP_Architecture is loaded or can be loaded.
+       *
+       * @static
+       * @see OOP_Architecture()
+       * @return OOP_Architecture - Main instance
+       * @since 1.0.0
+       */
+      public static function instance() {
+        if ( ! isset( self::$instance ) && ! ( self::$instance instanceof ClassA ) ) {
+
+          self::$instance = new ClassA();
+
+          /*
+           * Register our autoloader
+           */
+          spl_autoload_register( array( self::$instance, 'autoloader' ) );
+
+          // for compatibility with other extensions
+          self::$instance->classC = new OOP_Architecture_Class_C();
+          self::$instance->classD = new OOP_Architecture_Class_D();
+
+        }
+        return self::$instance;
+      }
       
       public function __construct() {
 
@@ -49,12 +87,40 @@ if ( !class_exists( 'ClassA' ) ) {
           // Add Title in back-end footer display
           add_action('wp_footer', array($this,'na_property_visibility'));
 
-          // Load translation files
-          add_action( 'plugins_loaded', array( $this, 'include_classes' ) );
+          // Load another class when this ClassA is called / object is created
+          spl_autoload_register( array( $this, 'autoloader' ) );
+          $this->classB = new OOP_Architecture_Class_B();
+
       }
 
-      public static function include_classes(){
-        require_once( 'includes/class-b.php' );
+      // public static function template_includes(){
+      //   require_once( 'includes/class-oop-architecture-class-b.php' );
+      // }
+
+      /**
+       * Load Classes
+       *
+       * @return      void
+       * @since       1.0.0
+       */
+      public function autoloader( $class_name ){
+        if ( class_exists( $class_name ) ) {
+          return;
+        }
+
+        if ( false === strpos( $class_name, self::PREFIX ) ) {
+          return;
+        }
+
+        $class_name = 'class-' . strtolower( $class_name );
+        $classes_dir = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR;
+
+        $class_file = str_replace( '_', '-', $class_name ) . '.php';
+        // echo $class_file;
+        if ( file_exists( $classes_dir . $class_file ) ){
+          require_once $classes_dir . $class_file;
+        }
+        
       }
 
       /* ENQUEUE SCRIPTS AND STYLES */
@@ -82,7 +148,27 @@ if ( !class_exists( 'ClassA' ) ) {
 
 // TODO: Replace these with a variable named appropriately and the class name above
 // If you need this available beyond our initial creation, you can create it as a global
-global $objectA;
+// global $objectA;
 
 // Create an instance / object of our class to kick off the whole thing
-$objectA = new ClassA();
+// $objectA = new ClassA();
+
+
+/**
+ * Returns the main instance of OOP_Architecture to prevent the need to use globals.
+ *
+ * @since  2.0
+ * @return OOP_Architecture
+ */
+function class_object() {
+  // echo "<br>Out of constructor<br>";
+  // echo "<pre>";
+  // var_dump(ClassA::instance()->classC);
+  // echo "</pre>";
+  // return ClassA::instance()->classC;
+  // return ClassA::instance()->classD->callback();
+  return ClassA::instance();
+}
+
+// Launch the whole plugin
+add_action( 'wp_loaded', 'class_object' );

@@ -1,6 +1,6 @@
 <?php
 
-class ClassB extends ClassA
+class OOP_Architecture_Class_B extends ClassA
 {
     // We can redeclare the public and protected properties, but not private
     
@@ -9,8 +9,12 @@ class ClassB extends ClassA
     
     public function __construct() {
 
-    	// Add Title in back-end footer display
-        add_action('wp_footer', array($this,'visibility_from_class_b'));
+    	// echo "<br>-- class b --";
+     //    echo "<br>".$this->public;
+     //    echo "<br>".$this->protected;
+
+        // Add Title in back-end footer display
+        add_action('wp_head', array($this,'visibility_from_class_b'));
 
       }
 
@@ -23,5 +27,3 @@ class ClassB extends ClassA
         // echo "<p style='color:pink;'>".$this->private."</p>"; // will generate error
     }
 }
-
-$objectB = new ClassB();
