@@ -7,27 +7,42 @@ use Automattic\WooCommerce\HttpClient\HttpClientException;
 
 class OOP_Architecture_Class_Woo_Com_API_Connect {
 
+    public $woocommerce;
+
     public function __construct() {
 
-        add_action('wp_head', array($this,'visibility_from_class_b'));
-
-    }
-
-    function visibility_from_class_b()
-    {
-        $woocommerce = new Client(
-            'http://wp-plugin-dev.local/', // Your store URL
-            'ck_a617102d9e1ef21cbd1b4f2ff4321c31adb22bc6', // Your consumer key
-            'cs_69507527d2f0178e12317ec61932332242f872d0', // Your consumer secret
+        $this->woocommerce = new Client(
+            site_url(), // Your store URL
+            'ck_3ea8d9829431ad18028fcc019025d57ff9e2faa1', // Your consumer key
+            'cs_b83e999a2cb7b7d752d5aa501c7b66cb15004ada', // Your consumer secret
             [
-                'wp_api' => true, // Enable the WP REST API integration
-                'version' => 'wc/v3', // WooCommerce WP REST API version
+                'wp_api' => true,
+                'version' => 'wc/v3',
                 'verify_ssl' => false,
-                // 'timeout' => 40000
+                // 'query_string_auth' => true
+                // 'timeout' => 500
             ]
         );
-        var_dump(count($woocommerce->get('products')));
-        return $woocommerce;
+
+        add_action('wp_head', array($this,'create_product'));
+    }
+
+    function create_product() {
+        
+        $results = $this->woocommerce->get('');
+        var_dump($results);
+        // try {
+        //     // Array of response results.
+        //     // $results = $woocommerce->get('products');
+        //     // Example: ['customers' => [[ 'id' => 8, 'created_at' => '2015-05-06T17:43:51Z', 'email' => ...
+        //     // var_dump($results);
+
+        // } catch (HttpClientException $e) {
+        //     echo '<pre><code>' . print_r( $e->getMessage(), true ) . '</code><pre>'; // Error message.
+        //     echo '<pre><code>' . print_r( $e->getRequest(), true ) . '</code><pre>'; // Last request data.
+        //     echo '<pre><code>' . print_r( $e->getResponse(), true ) . '</code><pre>'; // Last response data.
+        // }
+
     }
 
 }
