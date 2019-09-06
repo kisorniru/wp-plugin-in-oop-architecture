@@ -69,6 +69,7 @@ if ( !class_exists( 'ClassA' ) ) {
           // for compatibility with other extensions
           self::$instance->classC = new OOP_Architecture_Class_C();
           self::$instance->classD = new OOP_Architecture_Class_D();
+          self::$instance->WooComAPIConnect = new OOP_Architecture_Class_Woo_Com_API_Connect();
 
         }
         return self::$instance;
@@ -92,10 +93,6 @@ if ( !class_exists( 'ClassA' ) ) {
           $this->classB = new OOP_Architecture_Class_B();
 
       }
-
-      // public static function template_includes(){
-      //   require_once( 'includes/class-oop-architecture-class-b.php' );
-      // }
 
       /**
        * Load Classes
@@ -160,14 +157,10 @@ if ( !class_exists( 'ClassA' ) ) {
  * @since  2.0
  * @return OOP_Architecture
  */
-function class_object() {
-  // echo "<br>Out of constructor<br>";
-  // echo "<pre>";
-  // var_dump(ClassA::instance()->classC);
-  // echo "</pre>";
-  // return ClassA::instance()->classC;
-  // return ClassA::instance()->classD->callback();
+function class_object() { 
+  
   return ClassA::instance();
+
 }
 
 // Launch the whole plugin
