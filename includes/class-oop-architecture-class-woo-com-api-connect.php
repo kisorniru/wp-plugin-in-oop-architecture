@@ -19,8 +19,6 @@ class OOP_Architecture_Class_Woo_Com_API_Connect {
                 'wp_api' => true,
                 'version' => 'wc/v3',
                 'verify_ssl' => false,
-                // 'query_string_auth' => true
-                // 'timeout' => 500
             ]
         );
 
@@ -53,21 +51,18 @@ class OOP_Architecture_Class_Woo_Com_API_Connect {
             ]
         ];
 
-        $this->woocommerce->post('products', $data);
+        try {
+            // Array of response results.
+            $this->woocommerce->post('products', $data);
+            $results = $this->woocommerce->get('products');
+            // Example: ['customers' => [[ 'id' => 8, 'created_at' => '2015-05-06T17:43:51Z', 'email' => ...
+            // var_dump($results);
 
-        $results = $this->woocommerce->get('products');
-        var_dump($results);
-        // try {
-        //     // Array of response results.
-        //     // $results = $woocommerce->get('products');
-        //     // Example: ['customers' => [[ 'id' => 8, 'created_at' => '2015-05-06T17:43:51Z', 'email' => ...
-        //     // var_dump($results);
-
-        // } catch (HttpClientException $e) {
-        //     echo '<pre><code>' . print_r( $e->getMessage(), true ) . '</code><pre>'; // Error message.
-        //     echo '<pre><code>' . print_r( $e->getRequest(), true ) . '</code><pre>'; // Last request data.
-        //     echo '<pre><code>' . print_r( $e->getResponse(), true ) . '</code><pre>'; // Last response data.
-        // }
+        } catch (HttpClientException $e) {
+            echo '<pre><code>' . print_r( $e->getMessage(), true ) . '</code><pre>'; // Error message.
+            echo '<pre><code>' . print_r( $e->getRequest(), true ) . '</code><pre>'; // Last request data.
+            echo '<pre><code>' . print_r( $e->getResponse(), true ) . '</code><pre>'; // Last response data.
+        }
 
     }
 
