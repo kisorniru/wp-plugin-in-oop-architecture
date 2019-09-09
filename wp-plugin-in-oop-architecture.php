@@ -69,7 +69,7 @@ if ( !class_exists( 'ClassA' ) ) {
           // for compatibility with other extensions
           self::$instance->classC = new OOP_Architecture_Class_C();
           self::$instance->classD = new OOP_Architecture_Class_D();
-          self::$instance->classD = new OOP_Architecture_Class_Carbon_Fields();
+          self::$instance->carbon = new OOP_Architecture_Class_Carbon_Fields();
           self::$instance->WooComAPIConnect = new OOP_Architecture_Class_Woo_Com_API_Connect();
 
         }
