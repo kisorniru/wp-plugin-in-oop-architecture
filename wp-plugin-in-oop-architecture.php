@@ -69,7 +69,7 @@ if ( !class_exists( 'ClassA' ) ) {
           // for compatibility with other extensions
           self::$instance->classC = new OOP_Architecture_Class_C();
           self::$instance->classD = new OOP_Architecture_Class_D();
-          self::$instance->carbon = new OOP_Architecture_Class_Carbon_Fields();
+          // self::$instance->carbon = new OOP_Architecture_Class_Carbon_Fields();
           self::$instance->WooComAPIConnect = new OOP_Architecture_Class_Woo_Com_API_Connect();
 
         }
@@ -92,6 +92,9 @@ if ( !class_exists( 'ClassA' ) ) {
           // Load another class when this ClassA is called / object is created
           spl_autoload_register( array( $this, 'autoloader' ) );
           $this->classB = new OOP_Architecture_Class_B();
+
+          $this->carbon = new OOP_Architecture_Class_Carbon_Fields();
+
 
       }
 
@@ -165,4 +168,4 @@ function class_object() {
 }
 
 // Launch the whole plugin
-add_action( 'wp_loaded', 'class_object' );
+add_action( 'woocommerce_loaded', 'class_object' );
